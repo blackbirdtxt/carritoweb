@@ -13,10 +13,10 @@ export async function registrar(email,password){
 
 export async function login(email,password){
     await signInWithEmailAndPassword(auth,email,password);
-    window.location="../inicio.html";
+    window.location="../index.html";
 }
 
 export function logout(){
     signOut(auth);
-    window.location="../inicio.html";
+    window.location="../index.html";
 }
