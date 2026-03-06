@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Registro</title>
 <link rel="stylesheet" href="../css/styles.css">
+
 <script type="module">
-import {registrar} from "../js/auth.js";
 
-window.reg=()=>{
+import { registrar } from "../js/auth.js";
 
-let email=document.getElementById("email").value;
-let pass=document.getElementById("pass").value;
+window.reg = async () => {
 
-registrar(email,pass);
+let email = document.getElementById("email").value;
+let pass = document.getElementById("pass").value;
+
+try{
+
+await registrar(email,pass);
+
+document.getElementById("mensajeRegistro").style.display="block";
+
+setTimeout(()=>{
+window.location="login.html";
+},2000);
+
+}catch(error){
+
+alert("Error: "+error.message);
 
 }
+
+}
+
 </script>
+
 </head>
 
 <body>
@@ -24,9 +43,21 @@ registrar(email,pass);
 <h2>Registro</h2>
 
 <input id="email" placeholder="email"><br><br>
+
 <input id="pass" type="password" placeholder="password"><br><br>
 
 <button onclick="reg()">Crear cuenta</button>
+
+<br><br>
+
+<div id="mensajeRegistro" style="display:none;color:green;">
+Registro exitoso. Redirigiendo al login...
+</div>
+
+<br>
+
+<p>¿Ya tienes cuenta?</p>
+<a href="login.html">Iniciar sesión</a>
 
 </div>
 
