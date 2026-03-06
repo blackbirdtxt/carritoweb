@@ -1,18 +1,40 @@
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { db,auth } from "./firebase-config.js";
+import {
+collection,
+addDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "REPLACE",
-  authDomain: "REPLACE",
-  projectId: "REPLACE",
-  storageBucket: "REPLACE",
-  messagingSenderId: "REPLACE",
-  appId: "REPLACE"
-};
+let carrito=JSON.parse(localStorage.getItem("carrito"))||[];
 
-const app = initializeApp(firebaseConfig);
+const lista=document.getElementById("lista");
+let total=0;
 
-export const db = getFirestore(app);
-export const auth = getAuth(app);
+carrito.forEach(p=>{
+
+let li=document.createElement("li");
+li.innerText=p.nombre+" $"+p.precio;
+lista.appendChild(li);
+
+total+=p.precio;
+
+});
+
+document.getElementById("total").innerText=total;
+
+async function pagar(){
+
+await addDoc(collection(db,"pedidos"),{
+usuario:auth.currentUser?.email || "anon",
+productos:carrito,
+total:total,
+fecha:new Date()
+});
+
+localStorage.removeItem("carrito");
+
+window.location="confirmacion.html";
+
+}
+
+window.pagar=pagar;
