@@ -1,18 +1,46 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin</title>
+
+<title>Panel Admin</title>
 <link rel="stylesheet" href="../css/styles.css">
+
+<script type="module" src="../js/admin.js"></script>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>Panel Admin</h1>
+<h1>Panel Administrador</h1>
 
-<p>Aqui podras gestionar productos y usuarios.</p>
+<h2>Agregar producto</h2>
+
+<input id="nombre" placeholder="Nombre producto"><br><br>
+<input id="precio" placeholder="Precio"><br><br>
+<input id="descripcion" placeholder="Descripción"><br><br>
+<input id="stock" placeholder="Stock"><br><br>
+
+<button onclick="crearProducto()">Agregar producto</button>
+
+<hr>
+
+<h2>Productos existentes</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Precio</th>
+<th>Eliminar</th>
+</tr>
+</thead>
+
+<tbody id="tablaProductos"></tbody>
+
+</table>
 
 </div>
 
