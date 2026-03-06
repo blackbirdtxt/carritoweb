@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="../css/styles.css">
+<script type="module">
+import {login} from "../js/auth.js";
+
+window.ingresar=()=>{
+
+let email=document.getElementById("email").value;
+let pass=document.getElementById("pass").value;
+
+login(email,pass);
+
+}
+</script>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Login</h2>
+
+<input id="email" placeholder="email"><br><br>
+<input id="pass" type="password" placeholder="password"><br><br>
+
+<button onclick="ingresar()">Login</button>
+
+<p>No tienes cuenta?</p>
+<a href="registro.html">Registrate aqui</a>
+
+</div>
+
+</body>
+</html>
