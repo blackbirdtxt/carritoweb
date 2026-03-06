@@ -1,35 +1,18 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Registro</title>
-<link rel="stylesheet" href="../css/styles.css">
-<script type="module">
-import {registrar} from "../js/auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-window.reg=()=>{
+const firebaseConfig = {
+  apiKey: "REPLACE",
+  authDomain: "REPLACE",
+  projectId: "REPLACE",
+  storageBucket: "REPLACE",
+  messagingSenderId: "REPLACE",
+  appId: "REPLACE"
+};
 
-let email=document.getElementById("email").value;
-let pass=document.getElementById("pass").value;
+const app = initializeApp(firebaseConfig);
 
-registrar(email,pass);
-
-}
-</script>
-</head>
-
-<body>
-
-<div class="container">
-
-<h2>Registro</h2>
-
-<input id="email" placeholder="email"><br><br>
-<input id="pass" type="password" placeholder="password"><br><br>
-
-<button onclick="reg()">Crear cuenta</button>
-
-</div>
-
-</body>
-</html>
+export const db = getFirestore(app);
+export const auth = getAuth(app);
